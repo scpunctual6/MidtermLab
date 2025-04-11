@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+</head>
+<body>
+    <h1>Contact Us</h1>
+    {% if errors %}
+        <ul class="error">
+            {% for error in errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        <div  class="container"
+        <label>Name:</label><input type="text" name="name" value="{{ name }}"><br>
+        <label>Email:</label><input type="email" name="email" value="{{ femail }}"><br>
+        <label>Phone Number:</label><input type="text" name="phone" value="{{ phone }}"><br>
+        <label>Message:</label><textarea name="message">{{ message }}</textarea><br>
+
+        <label>Subject:</label>
+        <select name="subject" onchange="toggleOther(this.value)">
+            <option>General Inquiry</option>
+            <option>Support Request</option>
+            <option>Other</option>
+        </select><br>
+        <input type="text" name="other_subject" id="other_subject" style="display:none;" placeholder="Enter custom subject"><br>
+
+        <label>Preferred Contact Method:</label><br>
+        <input type="checkbox" name="contact_method" value="Email"> Email<br>
+        <input type="checkbox" name="contact_method" value="Phone"> Phone<br>
+        <input type="checkbox" name="contact_method" value="Both"> Both<br>
+
+        <label>
+            <input type="checkbox" name="agreement" value="yes"> I agree to the terms
+        </label><br>
+
+        <button type="submit">Submit</button>
+    </form>
+ </div>
+    <script>
+        function toggleOther(val) {
+            document.getElementById('other_subject').style.display = val === 'Other' ? 'block' : 'none';
+        }
+
+    </script>
+</body>
+</html>
